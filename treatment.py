@@ -1,9 +1,8 @@
 import pandas as pd
-import numpy as np
 from typing import Optional, List
 
 class ProcessingOmissions():
-    '''
+    '''The class contains tools for handling omissions
 
     '''
     def fill_gaps(data: pd.DataFrame, features: List[str], value: any):
