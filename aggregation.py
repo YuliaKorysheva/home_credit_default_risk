@@ -12,12 +12,11 @@ class AggregationData():
         data(pd.DataFrame) = aggregation data
         feature_for_aggregation(List[str]) = features to be aggregated
         '''
-        d = {}
-        d['SK_ID_CURR'] = data['SK_ID_CURR'].unique()
-        d = pd.DataFrame(d).set_index('SK_ID_CURR')
+        column_name = 'SK_ID_CURR'
+        d = pd.DataFrame({column_name: data[column_name].unique()}).set_index(column_name)
         for feature in feature_for_aggregation:
             d = d.reindex(columns = d.columns.tolist() + list(data[feature].unique()))
-            group = data.groupby(['SK_ID_CURR', feature]).count()
+            group = data.groupby([column_name, feature]).count()
             for idx, idx_feature in group.index:
                 d.loc[idx, idx_feature] = group['SK_ID_BUREAU'].loc[(idx, idx_feature)]
 
