@@ -78,11 +78,12 @@ def compare_numerical_features(data: pd.DataFrame, features: List[str], colour: 
     '''
     sns.pairplot(data[features], hue='TARGET', palette=colour)
 
-def get_heatmap(data: pd.DataFrame, features: List[str], color: sns.palettes._ColorPalette):
+def get_heatmap(data: pd.DataFrame, features: List[str], colour: sns.palettes._ColorPalette):
     '''Returns a correlation map
 
     Args:
     data(pd.DataFrame) = data for checking
     features(Lisr[str]) = features for counting correlation
     '''
+    f, ax = plt.subplots(ncols=1, figsize=(11,9))
     sns.heatmap(data[features].corr(), cmap=colour, annot=True)
